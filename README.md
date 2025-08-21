@@ -1,11 +1,5 @@
 # MSpaceWar
 
-<img width="319" height="646" alt="image" src="https://github.com/user-attachments/assets/1e70a881-d596-4a61-a837-12b4a3052f00" />
-
-<img width="322" height="649" alt="image" src="https://github.com/user-attachments/assets/2da7d7ec-0e7f-44d7-8b66-98ea040efe27" />
-
-<img width="321" height="646" alt="image" src="https://github.com/user-attachments/assets/49fada4b-4ea5-4124-97f1-d69952fb89d1" />
-
 MSpaceWar - Проект, представляющий собой доработку популярной ретро-игры Space Invaders.
 
 В начале игры вас встречает игрок - красный корабль и волна из 10 врагов с разными паттернами атак. 
@@ -19,4 +13,8 @@ MSpaceWar - Проект, представляющий собой доработ
 Победой же является уничтожение всех врагов, в том числе босса. 
 
 
+<img width="319" height="646" alt="image" src="https://github.com/user-attachments/assets/1e70a881-d596-4a61-a837-12b4a3052f00" />
 
+<img width="322" height="649" alt="image" src="https://github.com/user-attachments/assets/2da7d7ec-0e7f-44d7-8b66-98ea040efe27" />
+
+<img width="321" height="646" alt="image" src="https://github.com/user-attachments/assets/49fada4b-4ea5-4124-97f1-d69952fb89d1" />
