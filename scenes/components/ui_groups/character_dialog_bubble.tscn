@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://che87rapyfqd8"]
+
+[ext_resource type="Texture2D" uid="uid://bdul467m5l464" path="res://sprites/dialogsprites/aska.png" id="1_1xqdk"]
+[ext_resource type="Script" uid="uid://vqx3xewy21ca" path="res://scripts/components/character_dialog_bubble.gd" id="1_n3oy3"]
+[ext_resource type="FontFile" uid="uid://drx8slr8n2dqo" path="res://sprites/GohuFont-Powerline.ttf" id="2_n3oy3"]
+
+[node name="CharacterDialogBubble" type="MarginContainer" groups=["ui_group"]]
+offset_right = 320.0
+offset_bottom = 650.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_n3oy3")
+
+[node name="HBoxContainer2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("1_1xqdk")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer2/HBoxContainer/MarginContainer"]
+z_index = 1
+texture_filter = 1
+texture_repeat = 2
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_n3oy3")
+text = "Синдзи - Бака!
+"
+
+[node name="Panel" type="Panel" parent="HBoxContainer2"]
+layout_mode = 2

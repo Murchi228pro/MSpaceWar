@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bov5xi2kddlsq"]
+
+[ext_resource type="Script" uid="uid://cpi5wxsyr3lbf" path="res://scripts/enemies/enemy_group.gd" id="1_efoxd"]
+[ext_resource type="PackedScene" uid="uid://dn4u4stbnbqfg" path="res://scenes/enemies/enemy.tscn" id="1_wwd08"]
+
+[node name="enemies" type="Node2D"]
+script = ExtResource("1_efoxd")
+
+[node name="group" type="Node2D" parent="."]
+position = Vector2(184, 64)
+
+[node name="enemyship8" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(-72, 32)
+
+[node name="enemyship" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(72, 32)
+
+[node name="enemyship2" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(144, 32)
+
+[node name="enemyship3" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(-72, -32)
+
+[node name="enemyship4" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(0, 32)
+
+[node name="enemyship5" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(0, -32)
+
+[node name="enemyship6" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(72, -32)
+
+[node name="enemyship7" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(144, -32)
+
+[node name="enemyship9" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(-144, -32)
+
+[node name="enemyship10" parent="group" instance=ExtResource("1_wwd08")]
+position = Vector2(-144, 32)
+
+[node name="FSM" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(360, 112)

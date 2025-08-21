@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://btx2bl0hqoenr"]
+
+[ext_resource type="PackedScene" uid="uid://che87rapyfqd8" path="res://scenes/components/ui_groups/character_dialog_bubble.tscn" id="1_lmyt2"]
+[ext_resource type="Texture2D" uid="uid://l8g46bo4hub3" path="res://sprites/dialogsprites/sindzi.png" id="2_cm0uf"]
+
+[node name="CharacterDialogBubble" instance=ExtResource("1_lmyt2")]
+
+[node name="TextureRect" parent="HBoxContainer2/HBoxContainer" index="0"]
+texture = ExtResource("2_cm0uf")
+
+[node name="RichTextLabel" parent="HBoxContainer2/HBoxContainer/MarginContainer" index="0"]
+text = ". . .
+"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqbbosb5a4ted"]
+
+[ext_resource type="FontFile" uid="uid://drx8slr8n2dqo" path="res://sprites/GohuFont-Powerline.ttf" id="1_ooo8p"]
+[ext_resource type="Script" uid="uid://jxg664q0o4ej" path="res://scripts/ui/score.gd" id="2_hu4es"]
+
+[node name="game_loop_ui" type="VBoxContainer" groups=["ui_group"]]
+offset_left = 224.0
+offset_top = 605.0
+offset_right = 320.0
+offset_bottom = 656.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Score" type="LineEdit" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ooo8p")
+text = "0"
+alignment = 1
+script = ExtResource("2_hu4es")

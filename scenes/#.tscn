@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://clif0c2o5snrh"]
+
+[ext_resource type="Script" uid="uid://08oi1l1litvs" path="res://scripts/#.gd" id="1_428ym"]
+[ext_resource type="PackedScene" uid="uid://b2hbv03xhgoyq" path="res://scenes/background.tscn" id="1_hvk6t"]
+[ext_resource type="PackedScene" uid="uid://cxxwcfjvj54eu" path="res://scenes/components/ui_groups/dialogs/aska.tscn" id="2_1ndl8"]
+[ext_resource type="FontFile" uid="uid://drx8slr8n2dqo" path="res://sprites/GohuFont-Powerline.ttf" id="2_7yiru"]
+[ext_resource type="PackedScene" uid="uid://cc1wycqc0yu36" path="res://scenes/game.tscn" id="2_8twtv"]
+[ext_resource type="Shader" uid="uid://db58gy1c0y2t4" path="res://scripts/components/disolving.gdshader" id="2_oxm8p"]
+[ext_resource type="Script" uid="uid://4gm7flxxxh8a" path="res://scripts/ui/playbutton.gd" id="4_aivyt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yiru"]
+shader = ExtResource("2_oxm8p")
+shader_parameter/progress = -2.0
+shader_parameter/noiseForce = 0.2
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidth = 0.0
+shader_parameter/direction = 70.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_oxm8p"]
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_aivyt"]
+events = [SubResource("InputEventKey_oxm8p")]
+
+[node name="#" type="Node2D" groups=["gameroot"]]
+script = ExtResource("1_428ym")
+first_dialog_scene = ExtResource("2_1ndl8")
+game_scene = ExtResource("2_8twtv")
+
+[node name="bg" parent="." instance=ExtResource("1_hvk6t")]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI" groups=["ui_canvas"]]
+
+[node name="Control" type="Control" parent="UI/CanvasLayer" groups=["ui_group"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = 630.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 260
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 340
+
+[node name="Button" type="Button" parent="UI/CanvasLayer/Control/MarginContainer"]
+material = SubResource("ShaderMaterial_7yiru")
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_7yiru")
+shortcut = SubResource("Shortcut_aivyt")
+text = "Play
+"
+script = ExtResource("4_aivyt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="button_down" from="UI/CanvasLayer/Control/MarginContainer/Button" to="UI/CanvasLayer/Control/MarginContainer/Button" method="_on_button_down"]

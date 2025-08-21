@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmn53diaheg2s"]
+
+[ext_resource type="Script" uid="uid://bvb66w2njr882" path="res://scripts/components/bullet.gd" id="1_2as5g"]
+[ext_resource type="Script" uid="uid://dil4aw1tutdhh" path="res://scripts/components/hitbox.gd" id="2_j5eos"]
+
+[node name="bullet" type="CharacterBody2D"]
+top_level = true
+script = ExtResource("1_2as5g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_j5eos")
+metadata/_custom_type_script = "uid://dil4aw1tutdhh"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.38419e-07, 2.38419e-07)
+scale = Vector2(0.4, 0.4)

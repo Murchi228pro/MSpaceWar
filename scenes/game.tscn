@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc1wycqc0yu36"]
+
+[ext_resource type="Script" uid="uid://bcraxcmiufqrm" path="res://scripts/game.gd" id="1_iywne"]
+[ext_resource type="PackedScene" uid="uid://bqbbosb5a4ted" path="res://scenes/components/ui_groups/game_loop_ui.tscn" id="2_iywne"]
+[ext_resource type="PackedScene" uid="uid://bq2h25qlj21e7" path="res://scenes/player/ship.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bov5xi2kddlsq" path="res://scenes/enemies/enemy_group.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://btnwqapogwgsd" path="res://scenes/enemies/boss_packed.tscn" id="6_p57ef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqjtg"]
+size = Vector2(64, 656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(316, 48)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("enemies", "boss_manager") groups=["game"]]
+script = ExtResource("1_iywne")
+enemies = NodePath("enemies")
+boss_manager = NodePath("BossPacked")
+ui_scene = ExtResource("2_iywne")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_priority = 1
+position = Vector2(160, 328)
+
+[node name="playership" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(160, 605)
+
+[node name="env" type="Node2D" parent="."]
+position = Vector2(192, 320)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="env"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/StaticBody2D"]
+position = Vector2(-224, 8)
+shape = SubResource("RectangleShape2D_yqjtg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="env/StaticBody2D"]
+position = Vector2(160, 8)
+shape = SubResource("RectangleShape2D_yqjtg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="env/StaticBody2D"]
+position = Vector2(-32, 360)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="env/StaticBody2D"]
+position = Vector2(-32, -24)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="enemies" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="BossPacked" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(160, 80)

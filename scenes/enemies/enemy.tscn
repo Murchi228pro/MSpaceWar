@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=3 uid="uid://dn4u4stbnbqfg"]
+
+[ext_resource type="Script" uid="uid://dil4aw1tutdhh" path="res://scripts/components/hitbox.gd" id="1_8e3ao"]
+[ext_resource type="Script" uid="uid://6wmphxg4le8n" path="res://scripts/enemies/enemy.gd" id="1_jt03m"]
+[ext_resource type="Script" uid="uid://grq0crqifkym" path="res://scripts/components/health_component.gd" id="2_38ino"]
+[ext_resource type="PackedScene" uid="uid://ct6wvkjhbfwgg" path="res://scenes/components/gun.tscn" id="2_tihwb"]
+[ext_resource type="Texture2D" uid="uid://dh1v7a8138cfx" path="res://sprites/enemy/Sprite-0005.png" id="3_jt03m"]
+[ext_resource type="Script" uid="uid://d13lu3qqjf82o" path="res://scripts/components/shader_controller.gd" id="4_qch6t"]
+[ext_resource type="Shader" uid="uid://dj7tfq3qljaid" path="res://scripts/components/hit_taking.gdshader" id="4_tihwb"]
+[ext_resource type="PackedScene" uid="uid://by7xd25nhnrn2" path="res://scenes/components/hurtbox.tscn" id="8_n7575"]
+[ext_resource type="PackedScene" uid="uid://b3jn34d2l7tca" path="res://scenes/enemies/simple_enemy_bullet.tscn" id="11_p7w77"]
+[ext_resource type="Script" uid="uid://yti0moqwvtab" path="res://scripts/components/mover.gd" id="11_tihwb"]
+[ext_resource type="Script" uid="uid://dql56lo8iqh1q" path="res://scripts/components/queue.gd" id="12_p7w77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7w77"]
+shader = ExtResource("4_tihwb")
+shader_parameter/whiteness = 0.0
+shader_parameter/rstep = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jt03m"]
+size = Vector2(64, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qch6t"]
+radius = 24.0
+height = 64.0
+
+[node name="enemyship" type="CharacterBody2D" node_paths=PackedStringArray("queue")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jt03m")
+queue = NodePath("Queue")
+
+[node name="Gun" parent="." instance=ExtResource("2_tihwb")]
+bullet_scene = ExtResource("11_p7w77")
+
+[node name="HitableSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p7w77")
+texture = ExtResource("3_jt03m")
+script = ExtResource("4_qch6t")
+hit_animations_count = 1
+max_whiter = 1.0
+time = 0.2
+metadata/_custom_type_script = "uid://d13lu3qqjf82o"
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8e3ao")
+damage = 80
+metadata/_custom_type_script = "uid://dil4aw1tutdhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_jt03m")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_38ino")
+health = 500
+metadata/_custom_type_script = "uid://grq0crqifkym"
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_n7575")]
+collision_layer = 16
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../HitableSprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_qch6t")
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("11_tihwb")
+
+[node name="Queue" type="Node" parent="."]
+script = ExtResource("12_p7w77")
+
+[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]

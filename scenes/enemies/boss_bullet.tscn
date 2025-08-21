@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bctskea7v8lf5"]
+
+[ext_resource type="PackedScene" uid="uid://bmn53diaheg2s" path="res://scenes/components/bullet.tscn" id="1_8tuhw"]
+[ext_resource type="Texture2D" uid="uid://dqnicrv3o6vks" path="res://sprites/boss/Sprite-0003.png" id="2_0cyri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vnkf"]
+radius = 8.0
+
+[node name="bullet" instance=ExtResource("1_8tuhw")]
+speed = 10000
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -1.57079
+texture = ExtResource("2_0cyri")
+
+[node name="HitBox" parent="." index="1"]
+collision_layer = 4
+collision_mask = 2
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_4vnkf")

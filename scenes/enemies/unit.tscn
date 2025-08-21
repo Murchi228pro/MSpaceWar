@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://bu3tqr3rk7q6h"]
+
+[ext_resource type="Texture2D" uid="uid://1a2s13eohea8" path="res://sprites/boss/unit.png" id="1_4o8ri"]
+[ext_resource type="Script" uid="uid://bqmmc7gjrbhtf" path="res://scripts/enemies/unit.gd" id="2_1mt81"]
+[ext_resource type="Script" uid="uid://dil4aw1tutdhh" path="res://scripts/components/hitbox.gd" id="2_xc6lq"]
+[ext_resource type="PackedScene" uid="uid://ch0118gp6gac7" path="res://scenes/enemies/unit_bullet.tscn" id="3_b4hym"]
+[ext_resource type="Script" uid="uid://ba1xw2gmc2h40" path="res://scripts/components/gun.gd" id="3_ofk1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofk1t"]
+size = Vector2(48, 32)
+
+[node name="unit" type="Node2D"]
+rotation = -1.57079
+script = ExtResource("2_1mt81")
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(16, -9.91821e-05)
+scale = Vector2(1694.5, 115.334)
+script = ExtResource("3_ofk1t")
+bullet_scene = ExtResource("3_b4hym")
+metadata/_custom_type_script = "uid://ba1xw2gmc2h40"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.57079
+texture = ExtResource("1_4o8ri")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_xc6lq")
+metadata/_custom_type_script = "uid://dil4aw1tutdhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1.82946e-05, -4.06372e-11)
+shape = SubResource("RectangleShape2D_ofk1t")

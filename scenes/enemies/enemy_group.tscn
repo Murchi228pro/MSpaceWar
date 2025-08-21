@@ -1,0 +1,177 @@
+[gd_scene load_steps=12 format=3 uid="uid://bov5xi2kddlsq"]
+
+[ext_resource type="Script" uid="uid://cpi5wxsyr3lbf" path="res://scripts/enemies/enemy_group.gd" id="1_efoxd"]
+[ext_resource type="PackedScene" uid="uid://dn4u4stbnbqfg" path="res://scenes/enemies/enemy.tscn" id="1_wwd08"]
+[ext_resource type="Script" uid="uid://ltv20kixu5k3" path="res://scripts/components/fsm.gd" id="3_o2gf7"]
+[ext_resource type="Script" uid="uid://b3jcenhawe1od" path="res://scripts/enemies/states/placement.gd" id="4_ewyum"]
+[ext_resource type="Script" uid="uid://c2yf080j4w5po" path="res://scripts/enemies/states/shoot.gd" id="5_ilq2h"]
+[ext_resource type="Script" uid="uid://584p6fmbhv36" path="res://scripts/enemies/states/ram.gd" id="6_ly0on"]
+
+[sub_resource type="Curve2D" id="Curve2D_o2gf7"]
+_data = {
+"points": PackedVector2Array(0, -40, 0, 164, 320, -72, 0, -164, 0, 164, 48, 120, 0, -164, 0, 164, 320, 312, 0, -164, 0, 164, 48, 504, 0, -164, 0, 0, 320, 688)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_ly0on"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 164, 296, -48, 0, -164, 0, 164, 24, 128, 0, -164, 0, 164, 296, 320, 0, -164, 0, 164, 24, 512, 0, -164, 0, 0, 296, 712)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_b0dqa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 30, -160, 88, 0, 0, 0, 0, -160, 208, 0, -30, 0, 30, 64, 248, 0, -30, 0, 30, -64, 296, 0, -30, 0, 30, 288, 344, 0, -30, 0, 30, -32, 400, 0, -30, 0, 30, 168, 456, 0, -30, 0, 30, -32, 512, 0, -30, 0, 30, 272, 584, 0, -30, 0, 30, -32, 640, 0, -30, 0, 30, 128, 704, 0, -30, 0, 0, -32, 752)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_ns4wl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -160, 48, -44.289, -44.4056, 44.289, 44.4056, -160, 168, 0, -27.0718, 0, 27.0718, 224, 224, 0, -30, 0, 30, 96, 288, 0, -30, 0, 30, 296, 320, 0, -30, 0, 30, 152, 376, 0.870081, -39.301, -0.870081, 39.301, 400, 424, 90.5, -59.4, -90.5, 59.4, 96, 552, 0, 0, 0, 0, 32, 736)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_gn0a3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -160, 40, -35.937, -22.627, 35.937, 22.627, -40, 264, -42.592, -33.275, 42.592, 33.275, 192, 320, 54.571, -34.606, -54.571, 34.606, 256, 448, 39.93, -34.606, -39.93, 34.606, 56, 448, -37.268, -35.937, 37.268, 35.937, 56, 552, 0, 0, 0, 0, 256, 728)
+}
+point_count = 7
+
+[node name="enemies" type="Node2D" node_paths=PackedStringArray("group")]
+script = ExtResource("1_efoxd")
+group = NodePath("group")
+
+[node name="group" type="Node2D" parent="."]
+position = Vector2(184, -168)
+
+[node name="enemyship10" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "left_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-296, 8)
+shoot_pos_marker = NodePath("../../base_positions/Leftest_top")
+
+[node name="enemyship8" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "left_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-224, 8)
+shoot_pos_marker = NodePath("../../base_positions/Lefter_top")
+
+[node name="enemyship4" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "left_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-152, 8)
+shoot_pos_marker = NodePath("../../base_positions/Center_top")
+
+[node name="enemyship" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "left_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-80, 8)
+shoot_pos_marker = NodePath("../../base_positions/Righter_top")
+
+[node name="enemyship2" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "left_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-8, 8)
+shoot_pos_marker = NodePath("../../base_positions/Rightest_top")
+
+[node name="enemyship9" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "right_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(-40, 72)
+shoot_pos_marker = NodePath("../../base_positions/Leftest_bottom")
+
+[node name="enemyship3" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "right_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(32, 72)
+shoot_pos_marker = NodePath("../../base_positions/Lefter_bottom")
+
+[node name="enemyship5" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "right_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(104, 72)
+shoot_pos_marker = NodePath("../../base_positions/Center_bottom")
+
+[node name="enemyship6" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "right_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(176, 72)
+shoot_pos_marker = NodePath("../../base_positions/Righter_bottom")
+
+[node name="enemyship7" parent="group" node_paths=PackedStringArray("shoot_pos_marker") groups=["enemyship", "right_wave"] instance=ExtResource("1_wwd08")]
+position = Vector2(248, 72)
+shoot_pos_marker = NodePath("../../base_positions/Rightest_bottom")
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_o2gf7")
+
+[node name="Placement" type="Node" parent="FSM" node_paths=PackedStringArray("tick_delay", "group")]
+script = ExtResource("4_ewyum")
+tick_delay = NodePath("../../delays/ShootingDelay")
+group = NodePath("../../group")
+
+[node name="WaveMove" type="Node" parent="FSM" node_paths=PackedStringArray("left_wave_path", "right_wave_path", "wave_start", "group")]
+script = ExtResource("5_ilq2h")
+left_wave_path = NodePath("../../paths/Left_wave")
+right_wave_path = NodePath("../../paths/Right_wave")
+wave_start = NodePath("../../base_positions/Waves/Right")
+group = NodePath("../../group")
+
+[node name="SnakeMove" type="Node" parent="FSM" node_paths=PackedStringArray("snakes", "tick_delay", "group")]
+script = ExtResource("6_ly0on")
+snakes = [NodePath("../../paths/first_snake"), NodePath("../../paths/second_snake"), NodePath("../../paths/third_snake")]
+tick_delay = NodePath("../../delays/ShootingDelay")
+group = NodePath("../../group")
+
+[node name="base_positions" type="Node2D" parent="."]
+
+[node name="Leftest_top" type="Marker2D" parent="base_positions"]
+position = Vector2(32, 48)
+
+[node name="Lefter_top" type="Marker2D" parent="base_positions"]
+position = Vector2(96, 48)
+
+[node name="Center_top" type="Marker2D" parent="base_positions"]
+position = Vector2(160, 48)
+
+[node name="Righter_top" type="Marker2D" parent="base_positions"]
+position = Vector2(224, 48)
+
+[node name="Rightest_top" type="Marker2D" parent="base_positions"]
+position = Vector2(288, 48)
+
+[node name="Leftest_bottom" type="Marker2D" parent="base_positions"]
+position = Vector2(32, 144)
+
+[node name="Lefter_bottom" type="Marker2D" parent="base_positions"]
+position = Vector2(96, 144)
+
+[node name="Center_bottom" type="Marker2D" parent="base_positions"]
+position = Vector2(160, 144)
+
+[node name="Righter_bottom" type="Marker2D" parent="base_positions"]
+position = Vector2(224, 144)
+
+[node name="Rightest_bottom" type="Marker2D" parent="base_positions"]
+position = Vector2(288, 144)
+
+[node name="Waves" type="Node" parent="base_positions"]
+
+[node name="Right" type="Marker2D" parent="base_positions/Waves"]
+visible = false
+position = Vector2(424, -96)
+
+[node name="delays" type="Node" parent="."]
+
+[node name="ShootingDelay" type="Timer" parent="delays"]
+wait_time = 0.8
+
+[node name="MovingDelay" type="Timer" parent="delays"]
+wait_time = 0.2
+
+[node name="paths" type="Node2D" parent="."]
+
+[node name="Left_wave" type="Path2D" parent="paths"]
+visible = false
+position = Vector2(344, 640)
+rotation = -3.14159
+curve = SubResource("Curve2D_o2gf7")
+
+[node name="Right_wave" type="Path2D" parent="paths"]
+visible = false
+curve = SubResource("Curve2D_ly0on")
+
+[node name="first_snake" type="Path2D" parent="paths"]
+visible = false
+position = Vector2(0, -40)
+curve = SubResource("Curve2D_b0dqa")
+
+[node name="second_snake" type="Path2D" parent="paths"]
+visible = false
+curve = SubResource("Curve2D_ns4wl")
+
+[node name="third_snake" type="Path2D" parent="paths"]
+visible = false
+curve = SubResource("Curve2D_gn0a3")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxxwcfjvj54eu"]
+
+[ext_resource type="PackedScene" uid="uid://che87rapyfqd8" path="res://scenes/components/ui_groups/character_dialog_bubble.tscn" id="1_cvhhm"]
+[ext_resource type="PackedScene" uid="uid://btx2bl0hqoenr" path="res://scenes/components/ui_groups/dialogs/sindzi.tscn" id="2_ysk4c"]
+
+[node name="CharacterDialogBubble" instance=ExtResource("1_cvhhm")]
+next_scene = ExtResource("2_ysk4c")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4vla22vxbh03"]
+
+[ext_resource type="Script" uid="uid://dbneey8fe6wwr" path="res://scripts/player/simple_gun.gd" id="1_lg6bk"]
+[ext_resource type="PackedScene" uid="uid://kcxwn6t0uprh" path="res://scenes/player/simple_bullet.tscn" id="2_c7g7b"]
+
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("attack_delay")]
+rotation = -3.14159
+script = ExtResource("1_lg6bk")
+attack_delay = NodePath("Attack_delay")
+bullet_scene = ExtResource("2_c7g7b")
+
+[node name="Attack_delay" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Marker2D" type="Marker2D" parent="."]
+rotation = -1.5708
+
+[connection signal="timeout" from="Attack_delay" to="." method="_on_attack_delay_timeout"]

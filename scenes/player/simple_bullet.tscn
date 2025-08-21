@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://kcxwn6t0uprh"]
+
+[ext_resource type="PackedScene" uid="uid://bmn53diaheg2s" path="res://scenes/components/bullet.tscn" id="1_vv2wg"]
+[ext_resource type="Texture2D" uid="uid://ty20bwdjs80l" path="res://sprites/spaceship/bullets/simple_bullet/Sprite-0004.png" id="2_cqra5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h76v"]
+radius = 5.0
+
+[node name="bullet" instance=ExtResource("1_vv2wg")]
+rotation = 3.14159
+collision_layer = 4
+collision_mask = 16
+speed = 15000
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 1.57079
+texture = ExtResource("2_cqra5")
+
+[node name="HitBox" parent="." index="1"]
+collision_layer = 8
+collision_mask = 16
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_7h76v")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(3.38813e-21, 8.47033e-22)
